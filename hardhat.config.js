@@ -4,8 +4,8 @@ require("dotenv").config();
 module.exports = {
   solidity: "0.8.19",
   networks: {
-    sepolia: {
-      url: process.env.SEPOLIA_RPC_URL,  // URL RPC dari Infura atau Alchemy
+    mainnet: {
+      url: process.env.MAINNET_RPC_URL,  // URL RPC dari Infura atau Alchemy untuk mainnet
       accounts: [process.env.PRIVATE_KEY]  // Private key wallet deployer
     }
   }
