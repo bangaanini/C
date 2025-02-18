@@ -1,4 +1,3 @@
-
 const hre = require("hardhat");
 
 async function main() {
@@ -10,11 +9,16 @@ async function main() {
   console.log("Account balance:", balance.toString());
 
   // Ambil USDT address dari environment variable (pastikan sudah didefinisikan di .env)
-  const usdtAddress = process.env.USDT_ADDRESS || "0xYourUsdtTokenAddressOnSepolia";
+  const usdtAddress = process.env.USDT_ADDRESS || "0xYourUsdtTokenAddress";
   console.log("Using USDT token address:", usdtAddress);
 
   // Dapatkan contract factory
   const CloudMiningChisachon = await hre.ethers.getContractFactory("CloudMiningChisachon");
+
+  // Estimasi gas yang diperlukan untuk deploy kontrak
+  const deployTransaction = CloudMiningChisachon.getDeployTransaction(usdtAddress);
+  const estimatedGas = await deployer.estimateGas(deployTransaction);
+  console.log("Estimated gas for deployment:", estimatedGas.toString());
 
   // Deploy kontrak dengan parameter USDT address
   const cloudMiningChisachon = await CloudMiningChisachon.deploy(usdtAddress);
